@@ -1,8 +1,12 @@
 {
-  "name": "Tag-Finder",
+  "name": "tag-finder",
   "displayName": "TagFinder",
   "description": "标签查找/定位",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tipsxBase/Tag-Finder.git"
+  },
   "engines": {
     "vscode": "^1.103.0"
   },
