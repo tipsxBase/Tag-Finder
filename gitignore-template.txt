@@ -1,0 +1,6 @@
+# Tag-Finder .gitignore 建议
+
+# 如果不希望将标签数据库包含在 Git 仓库中，请取消下面一行的注释：
+# .vscode/tag-finder.json
+
+# 如果希望团队共享标签数据，请保持 tag-finder.json 文件被 Git 跟踪

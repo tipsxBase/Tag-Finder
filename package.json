@@ -1,0 +1,171 @@
+{
+  "name": "Tag-Finder",
+  "displayName": "TagFinder",
+  "description": "标签查找/定位",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tagFinder.addTag",
+        "title": "添加标签",
+        "icon": "$(tag)"
+      },
+      {
+        "command": "tagFinder.searchTags",
+        "title": "搜索标签",
+        "icon": "$(search)"
+      },
+      {
+        "command": "tagFinder.removeTag",
+        "title": "移除标签",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "tagFinder.refresh",
+        "title": "刷新",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "tagFinder.openFile",
+        "title": "打开文件",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "tagFinder.createGroup",
+        "title": "创建分组",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "tagFinder.toggleViewMode",
+        "title": "切换视图模式",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "tagFinder.editTag",
+        "title": "编辑标签",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "tagFinder.cleanupTags",
+        "title": "清理无效标签",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "tagFinder.showCollabInfo",
+        "title": "协作信息",
+        "icon": "$(info)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tagFinder",
+          "title": "标签查找器",
+          "icon": "$(tag)"
+        }
+      ]
+    },
+    "views": {
+      "tagFinder": [
+        {
+          "id": "tagFinderView",
+          "name": "标签管理",
+          "when": "true"
+        }
+      ]
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "tagFinder.addTag",
+          "when": "!explorerResourceIsFolder",
+          "group": "2_workspace"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "tagFinder.searchTags",
+          "when": "view == tagFinderView",
+          "group": "navigation"
+        },
+        {
+          "command": "tagFinder.createGroup",
+          "when": "view == tagFinderView",
+          "group": "navigation"
+        },
+        {
+          "command": "tagFinder.toggleViewMode",
+          "when": "view == tagFinderView",
+          "group": "navigation"
+        },
+        {
+          "command": "tagFinder.refresh",
+          "when": "view == tagFinderView",
+          "group": "navigation"
+        },
+        {
+          "command": "tagFinder.cleanupTags",
+          "when": "view == tagFinderView",
+          "group": "navigation"
+        },
+        {
+          "command": "tagFinder.showCollabInfo",
+          "when": "view == tagFinderView",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "tagFinder.editTag",
+          "when": "view == tagFinderView && viewItem == tagItem",
+          "group": "inline"
+        },
+        {
+          "command": "tagFinder.removeTag",
+          "when": "view == tagFinderView && viewItem == tagItem",
+          "group": "inline"
+        },
+        {
+          "command": "tagFinder.openFile",
+          "when": "view == tagFinderView && viewItem == tagItem",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.103.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "eslint": "^9.32.0",
+    "esbuild": "^0.25.8",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.2",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
