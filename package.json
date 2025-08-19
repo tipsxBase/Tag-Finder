@@ -2,6 +2,8 @@
   "name": "tag-finder",
   "displayName": "TagFinder",
   "description": "标签查找/定位",
+  "publisher": "tipsx",
+  "license": "MIT",
   "version": "0.0.1",
   "repository": {
     "type": "git",
